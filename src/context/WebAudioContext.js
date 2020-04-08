@@ -78,7 +78,7 @@ class WebAudioContext extends BaseAudioContext {
     if (this._processor) {
       this._processor.disconnect();
     }
-    return super.suspend();
+    return this._impl.suspend();
   }
 
   /**

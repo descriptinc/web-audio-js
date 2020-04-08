@@ -308,9 +308,11 @@ class AudioNode extends EventTarget {
   }
 
   /**
-   *
+   * @param {number} numberOfChannels
    */
-  channelDidUpdate() {}
+  channelDidUpdate(numberOfChannels) {
+    // do nothing
+  }
 
   /**
    *

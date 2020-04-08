@@ -73,15 +73,6 @@ describe('api/AudioContext', () => {
   });
 
   describe('methods', () => {
-    it('.suspend()', () => {
-      const target = new AudioContext();
-
-      target._impl.suspend = jest.fn();
-
-      target.suspend();
-      expect(target._impl.suspend).toHaveBeenCalledTimes(1);
-    });
-
     it('.resume()', () => {
       const target = new AudioContext();
 

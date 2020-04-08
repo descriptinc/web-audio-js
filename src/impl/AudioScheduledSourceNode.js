@@ -59,8 +59,10 @@ class AudioScheduledSourceNode extends AudioSourceNode {
 
   /**
    * @param {number} when
+   * @param {number} [offset]
+   * @param {number} [duration]
    */
-  start(when) {
+  start(when, offset, duration) {
     /* istanbul ignore next */
     if (this._startTime !== Infinity) {
       return;

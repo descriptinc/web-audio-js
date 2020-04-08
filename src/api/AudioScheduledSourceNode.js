@@ -12,8 +12,14 @@ class AudioScheduledSourceNode extends AudioNode {
     this._impl.$onended = callback;
   }
 
-  start(when) {
-    this._impl.start(when);
+  /**
+   *
+   * @param {number} when
+   * @param {number} [offset]
+   * @param {number} [duration]
+   */
+  start(when, offset, duration) {
+    this._impl.start(when, offset, duration);
   }
 
   stop(when) {

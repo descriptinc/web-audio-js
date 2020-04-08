@@ -153,8 +153,8 @@ class AudioBufferSourceNode extends AudioScheduledSourceNode {
 
   /**
    * @param {number} when
-   * @param {number} offset
-   * @param {number} duration
+   * @param {number} [offset]
+   * @param {number} [duration]
    */
   start(when, offset, duration) {
     /* istanbul ignore next */

@@ -110,7 +110,7 @@ class StreamAudioContext extends BaseAudioContext {
     if (this.state === RUNNING) {
       this._suspend();
     }
-    return super.suspend();
+    return this._impl.suspend();
   }
 
   /**

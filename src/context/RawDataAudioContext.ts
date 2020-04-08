@@ -35,6 +35,10 @@ export class RawDataAudioContext extends BaseAudioContext {
     this.numberOfChannels = numberOfChannels;
   }
 
+  suspend() {
+    return this._impl.suspend();
+  }
+
   createAudioBuffer(
     length: number,
     sampleRate: number,

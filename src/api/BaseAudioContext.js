@@ -60,10 +60,6 @@ class BaseAudioContext extends EventTarget {
     return this._impl.getState();
   }
 
-  suspend() {
-    return this._impl.suspend();
-  }
-
   resume() {
     return this._impl.resume();
   }
