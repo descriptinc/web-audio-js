@@ -126,7 +126,7 @@ describe('api/AudioNode', () => {
       expect(target._impl.connect.mock.calls[0][1]).toBe(output);
     });
 
-    it('.disconnect(...args)', () => {
+    it('.disconnect(...args) mocked', () => {
       const context = new AudioContext();
       const target = context.createGain();
       const output = 0;
@@ -136,6 +136,22 @@ describe('api/AudioNode', () => {
       target.disconnect(output);
       expect(target._impl.disconnect).toHaveBeenCalledTimes(1);
       expect(target._impl.disconnect.mock.calls[0][0]).toBe(output);
+    });
+
+    it('.disconnect(...args) real', () => {
+      const context = new AudioContext();
+      const source = context.createGain();
+      const dest = context.destination;
+
+      expect(source._impl.outputs[0].inputs).toHaveLength(0);
+
+      source.connect(dest);
+
+      expect(source._impl.outputs[0].inputs).toHaveLength(1);
+
+      source.disconnect(dest);
+
+      expect(source._impl.outputs[0].inputs).toHaveLength(0);
     });
   });
 });

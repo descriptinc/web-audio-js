@@ -110,9 +110,11 @@ class AudioNodeOutput {
   disconnect(...args) {
     const isTargetToDisconnect =
       args.length === 1
-        ? (target) => target.node === args[0]
+        ? (target) => target.node === args[0] || target.node === args[0]._impl
         : args.length === 2
-        ? (target) => target.node === args[0] && target.index === args[1]
+        ? (target) =>
+            (target.node === args[0] || target.node === args[0]._impl) &&
+            target.index === args[1]
         : () => true;
 
     for (let i = this.inputs.length - 1; i >= 0; i--) {
