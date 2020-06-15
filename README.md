@@ -8,9 +8,13 @@
 
 Fork of [mohayonao/web-audio-engine](https://github.com/mohayonao/web-audio-engine) with following changes:
 
-- Using TypeScript
-- Added `RawDataAudioContext`
-- Bug fixes for `BiquadFilterNode` and `DelayNode`
+- Use TypeScript and fix some types
+  - Remove `BaseAudioContext.suspend()`
+- Add new `RawDataAudioContext`
+- Bug fixes
+  - Fixes for `BiquadFilterNode` and `DelayNode`
+  - Fix WAVE decoding
+  - Fix `AudioNode.disconnect(x)` not disconnecting
 
 ## Installation
 
