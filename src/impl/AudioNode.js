@@ -73,7 +73,7 @@ class AudioNode extends EventTarget {
 
     this._params = [];
     this._enabled = false;
-    this._suicideAtSampleFrame = Infinity;
+    this._disableAtSampleFrame = Infinity;
 
     inputs.forEach((numberOfChannels) => {
       this.addInput(numberOfChannels, channelCount, channelCountMode);
@@ -272,8 +272,8 @@ class AudioNode extends EventTarget {
    *
    */
   enableOutputsIfNecessary() {
+    this._disableAtSampleFrame = Infinity;
     if (!this._enabled) {
-      this._suicideAtSampleFrame = Infinity;
       this._enabled = true;
       this.outputs.forEach((output) => {
         output.enable();
@@ -285,13 +285,15 @@ class AudioNode extends EventTarget {
    *
    */
   disableOutputsIfNecessary() {
-    const currentTime = this.context.currentTime;
-    const disableAtTime = currentTime + this.getTailTime();
-
-    if (disableAtTime === currentTime) {
+    if (!this._enabled) {
+      return;
+    }
+    const tailTime = this.getTailTime();
+    if (tailTime === 0) {
       this._disableOutputsIfNecessary();
-    } else if (disableAtTime !== Infinity) {
-      this._suicideAtSampleFrame = Math.round(disableAtTime * this.sampleRate);
+    } else if (tailTime !== Infinity) {
+      const disableAtTime = this.context.currentTime + tailTime;
+      this._disableAtSampleFrame = Math.round(disableAtTime * this.sampleRate);
     }
   }
 
@@ -358,7 +360,7 @@ class AudioNode extends EventTarget {
     }
     this.currentSampleFrame = this.context.currentSampleFrame;
 
-    if (this._suicideAtSampleFrame <= this.currentSampleFrame) {
+    if (this._disableAtSampleFrame <= this.currentSampleFrame) {
       const outputs = this.outputs;
 
       for (let i = 0, imax = outputs.length; i < imax; i++) {
