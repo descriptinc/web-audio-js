@@ -3,8 +3,8 @@
 import { flushDenormalFloatToZero } from '../../utils';
 
 class BiquadFilterKernel {
-  constructor() {
-    this.coefficients = [0, 0, 0, 0, 0];
+  constructor(coefficients) {
+    this.coefficients = coefficients;
     this._x1 = 0;
     this._x2 = 0;
     this._y1 = 0;

@@ -21,7 +21,7 @@ const BiquadFilterNodeDSP = {
       this._kernels.splice(numberOfChannels);
     } else if (this._kernels.length < numberOfChannels) {
       while (numberOfChannels !== this._kernels.length) {
-        this._kernels.push(new BiquadFilterKernel(this, this._kernels.length));
+        this._kernels.push(new BiquadFilterKernel(this._coefficients));
       }
     }
 
