@@ -7,7 +7,7 @@
     "Marcello Bastea-Forte <marcello@descript.com>"
   ],
   "bugs": {
-    "url": "https://github.com/mohayonao/web-audio-engine/issues"
+    "url": "https://github.com/descriptinc/web-audio-js/issues"
   },
   "dependencies": {
     "audio-type": "^1.0.2",
@@ -44,7 +44,7 @@
     "src",
     "build"
   ],
-  "homepage": "https://github.com/descriptinc/web-audio-engine/",
+  "homepage": "https://github.com/descriptinc/web-audio-js/",
   "keywords": [
     "web audio api"
   ],
@@ -54,7 +54,7 @@
   "types": "build/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/descriptinc/web-audio-engine.git"
+    "url": "https://github.com/descriptinc/web-audio-js.git"
   },
   "scripts": {
     "build": "rollup -c",

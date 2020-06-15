@@ -1,20 +1,22 @@
 # @descript/web-audio-js
 
 ![Node CI](https://github.com/descriptinc/web-audio-js/workflows/Node%20CI/badge.svg)
-[![NPM Version](https://img.shields.io/npm/v/@descript/web-audio-js.svg?style=flat-square)](https://www.npmjs.org/package/@descript/web-audio-js)
-[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://mohayonao.mit-license.org/)
+[![NPM Version](https://img.shields.io/npm/v/@descript/web-audio-js.svg)](https://www.npmjs.org/package/@descript/web-audio-js)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://mohayonao.mit-license.org/)
 
 > Pure JS implementation of the [Web Audio API](https://www.w3.org/TR/webaudio/)
+
+Fork of [mohayonao/web-audio-engine](https://github.com/mohayonao/web-audio-engine) with following changes:
+
+- Using TypeScript
+- Added `RawDataAudioContext`
+- Bug fixes for `BiquadFilterNode` and `DelayNode`
 
 ## Installation
 
 ```
 npm install --save web-audio-engine
 ```
-
-##### download
-
-- [web-audio-engine.js](https://raw.githubusercontent.com/mohayonao/web-audio-engine/master/build/web-audio-engine.js)
 
 ## API
 
@@ -103,6 +105,38 @@ const audioData = context.exportAsAudioData();
 context.encodeAudioData(audioData).then((arrayBuffer) => {
   fs.writeFile('output.wav', new Buffer(arrayBuffer));
 });
+```
+
+### Class: RawDataAudioContext
+
+`RawDataAudioContext` allows you to synchronously step through an AudioContext. This is useful for streaming output at
+and controlling the rate 
+
+##### new RawDataAudioContext(opts?: object)
+
+Creates new `RenderingAudioContext` instance.
+
+- `opts.sampleRate: number` audio sample rate (in Hz) - _default: 44100_
+- `opts.numberOfChannels: number` audio channels (e.g. 2: stereo) - _default: 2_
+- `opts.blockSize: number` samples each rendering quantum - _default: 128_
+
+##### context.process(channelData: Float32Array[], offset: number = 0)
+
+Renders the next `blockSize` samples of audio into `channelData`.
+
+```js
+import { RawDataAudioContext } from 'web-audio-engine';
+const context = new RawDataAudioContext();
+const { blockSize } = context;
+const channelData = [
+  new Float32Array(blockSize),
+  new Float32Array(blockSize),
+];
+
+for (let i = 0; i < 100_000; i += blockSize)
+  context.process(channelData);
+  // Do something with channeLData
+}
 ```
 
 ### Class: WebAudioContext
