@@ -8,13 +8,14 @@
 
 Fork of [mohayonao/web-audio-engine](https://github.com/mohayonao/web-audio-engine) with following changes:
 
-- Use TypeScript and fix some types
-  - Remove `BaseAudioContext.suspend()`
-- Add new `RawDataAudioContext`
+- Use TypeScript and fix some types ([#5](https://github.com/descriptinc/web-audio-js/pull/5))
+  - Remove `BaseAudioContext.suspend()` ([#6](https://github.com/descriptinc/web-audio-js/pull/6))
+- Add new `RawDataAudioContext` ([#5](https://github.com/descriptinc/web-audio-js/pull/5))
+- Add support for `DynamicsCompressorNode` ([#1](https://github.com/descriptinc/web-audio-js/pull/1))
 - Bug fixes
-  - Fixes for `BiquadFilterNode` and `DelayNode`
-  - Fix WAVE decoding
-  - Fix `AudioNode.disconnect(x)` not disconnecting
+  - Fixes for `BiquadFilterNode` and `DelayNode` ([#8](https://github.com/descriptinc/web-audio-js/pull/8))
+  - Fix WAVE file decoding ([#5](https://github.com/descriptinc/web-audio-js/pull/5))
+  - Fix `AudioNode.disconnect(x)` not disconnecting ([#7](https://github.com/descriptinc/web-audio-js/pull/7))
 
 ## Installation
 
